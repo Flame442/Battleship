@@ -33,7 +33,7 @@ def place(player,length):
       x = letnum[t[0]]
       y = int(t[1])
       d = t[2]
-      if d == 'r':
+      if d == 'r': #stop people from right looping----------------------------------------------
         f = 0
         for z in range(length):
           if board[player][(y*10)+x+z] != 0:
@@ -42,7 +42,9 @@ def place(player,length):
           1 / 0
         for z in range(length):
           board[player][(y*10)+x+z] = 3
+        i = 1
       elif d == 'd':
+        f = 0
         for z in range(length):
           if board[player][((y+z)*10)+x] != 0:
             f = 1
@@ -50,6 +52,7 @@ def place(player,length):
           1 / 0
         for z in range(length):
           board[player][((y+z)*10)+x] = 3
+        i = 1
     except:
       print('Invalid input')
 
@@ -72,4 +75,21 @@ place(0,3)
 bprint(0,1)
 print('Place your 2 length ship')
 place(0,2)
-bprint(0,1)
+clear()
+print(name[1]+', it is your turn to set up your ships. Place ships by entering the top left cord in xyd format.')
+bprint(1,1)
+print('Place your 5 length ship')
+place(1,5)
+bprint(1,1)
+print('Place your 4 length ship')
+place(1,4)
+bprint(1,1)
+print('Place your first 3 length ship')
+place(1,3)
+bprint(1,1)
+print('Place your second 3 length ship')
+place(1,3)
+bprint(1,1)
+print('Place your 2 length ship')
+place(1,2)
+bprint(1,1)
