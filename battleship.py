@@ -34,6 +34,9 @@ def place(player,length):
       y = int(t[1])
       d = t[2]
       if d == 'r': #stop people from right looping----------------------------------------------
+        print(10 - length,x)
+        if 10 - length < x:
+          1 / 0
         f = 0
         for z in range(length):
           if board[player][(y*10)+x+z] != 0:
@@ -42,6 +45,7 @@ def place(player,length):
           1 / 0
         for z in range(length):
           board[player][(y*10)+x+z] = 3
+          #some kind of ship saver--------------------------------------------------------------
         i = 1
       elif d == 'd':
         f = 0
@@ -52,6 +56,7 @@ def place(player,length):
           1 / 0
         for z in range(length):
           board[player][((y+z)*10)+x] = 3
+          #some kind of ship saver--------------------------------------------------------------
         i = 1
     except:
       print('Invalid input')
@@ -93,3 +98,4 @@ bprint(1,1)
 print('Place your 2 length ship')
 place(1,2)
 bprint(1,1)
+clear()
