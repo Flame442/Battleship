@@ -33,8 +33,7 @@ def place(player,length):
       x = letnum[t[0]]
       y = int(t[1])
       d = t[2]
-      if d == 'r': #stop people from right looping----------------------------------------------
-        print(10 - length,x)
+      if d == 'r':
         if 10 - length < x:
           1 / 0
         f = 0
@@ -64,38 +63,27 @@ def place(player,length):
 print('Welcome to Battleship!')
 for a in range(2): name[a] = input('Name for player '+str(a+1)+'?\n')
 clear()
-print(name[0]+', it is your turn to set up your ships. Place ships by entering the top left cord in xyd format.')
-bprint(0,1)
-print('Place your 5 length ship')
-place(0,5)
-bprint(0,1)
-print('Place your 4 length ship')
-place(0,4)
-bprint(0,1)
-print('Place your first 3 length ship')
-place(0,3)
-bprint(0,1)
-print('Place your second 3 length ship')
-place(0,3)
-bprint(0,1)
-print('Place your 2 length ship')
-place(0,2)
-clear()
-print(name[1]+', it is your turn to set up your ships. Place ships by entering the top left cord in xyd format.')
-bprint(1,1)
-print('Place your 5 length ship')
-place(1,5)
-bprint(1,1)
-print('Place your 4 length ship')
-place(1,4)
-bprint(1,1)
-print('Place your first 3 length ship')
-place(1,3)
-bprint(1,1)
-print('Place your second 3 length ship')
-place(1,3)
-bprint(1,1)
-print('Place your 2 length ship')
-place(1,2)
-bprint(1,1)
-clear()
+for x in range(2):
+  print(name[x]+', it is your turn to set up your ships. Place ships by entering the top left cord in xyd format.')
+  bprint(x,1)
+  print('Place your 5 length ship')
+  place(x,5)
+  bprint(x,1)
+  print('Place your 4 length ship')
+  place(x,4)
+  bprint(x,1)
+  print('Place your first 3 length ship')
+  place(x,3)
+  bprint(x,1)
+  print('Place your second 3 length ship')
+  place(x,3)
+  bprint(x,1)
+  print('Place your 2 length ship')
+  place(x,2)
+  clear()
+game = True
+p = 1
+while game == True:
+  p = pswap[p]
+  print(name[p]+', take your shot')
+  t = input()
