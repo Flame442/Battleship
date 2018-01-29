@@ -85,5 +85,37 @@ game = True
 p = 1
 while game == True:
   p = pswap[p]
+  print(name[p]+'\'s turn!')
+  input()
+  clear()
+  bprint(p,1)
+  bprint(pswap[p],0)
   print(name[p]+', take your shot')
-  t = input()
+  i = 0
+  while i == 0:
+    try:
+      t = input()
+      x = letnum[t[0]]
+      y = int(t[1])
+      if board[pswap[p]][(y*10)+x] == 0:
+        clear()
+        board[pswap[p]][(y*10)+x] = 1
+        bprint(p,1)
+        bprint(pswap[p],0)
+        print('Miss!')
+        input()
+        clear()
+        i = 1
+      elif board[pswap[p]][(y*10)+x] in [1,2]:
+        print('You already shot there!')
+      elif board[pswap[p]][(y*10)+x] == 3:
+        clear()
+        board[pswap[p]][(y*10)+x] = 2
+        bprint(p,1)
+        bprint(pswap[p],0)
+        print('Hit!') #full ship destruction test-----------------------------------------------
+        input()
+        clear()
+        i = 1
+    except:
+      print('Invalid input')
