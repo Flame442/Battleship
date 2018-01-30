@@ -4,6 +4,7 @@ let = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','
 letnum = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16, 'r': 17, 's': 18, 't': 19, 'u': 20, 'v': 21, 'w': 22, 'x': 23, 'y': 24, 'z': 25}
 bkey = [{0:'· ',1:'O ',2:'X ',3:'· '},{0:'· ',1:'O ',2:'X ',3:'# '}]
 pswap = {1:0,0:1}
+key = [[],[]]
 #   KEY FOR BOARD # TO SYMBOL:
 #      ENEMY(0) FRIENDLY(1)
 #   ·: Unknown | Nothing
@@ -28,6 +29,7 @@ def bprint(player,bt):
 def place(player,length):
   i = 0
   while i == 0:
+    hold = {}
     t = input()
     try:
       x = letnum[t[0]]
@@ -44,7 +46,7 @@ def place(player,length):
           1 / 0
         for z in range(length):
           board[player][(y*10)+x+z] = 3
-          #some kind of ship saver--------------------------------------------------------------
+          hold[(y*10)+x+z] = 0
         i = 1
       elif d == 'd':
         f = 0
@@ -55,32 +57,23 @@ def place(player,length):
           1 / 0
         for z in range(length):
           board[player][((y+z)*10)+x] = 3
-          #some kind of ship saver--------------------------------------------------------------
+          hold[(y*10)+x+z] = 0
         i = 1
     except:
       print('Invalid input')
+  key[player].append(hold)
 
 print('Welcome to Battleship!')
 for a in range(2): name[a] = input('Name for player '+str(a+1)+'?\n')
 clear()
 for x in range(2):
   print(name[x]+', it is your turn to set up your ships. Place ships by entering the top left cord in xyd format.')
-  bprint(x,1)
-  print('Place your 5 length ship')
-  place(x,5)
-  bprint(x,1)
-  print('Place your 4 length ship')
-  place(x,4)
-  bprint(x,1)
-  print('Place your first 3 length ship')
-  place(x,3)
-  bprint(x,1)
-  print('Place your second 3 length ship')
-  place(x,3)
-  bprint(x,1)
-  print('Place your 2 length ship')
-  place(x,2)
-  clear()
+  for k in [5,4,3,3,2]:
+    bprint(x,1)
+    print('Place your '+str(k)+' length ship')
+    place(x,k)
+    clear()
+print(key)
 game = True
 p = 1
 while game == True:
