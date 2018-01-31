@@ -5,17 +5,8 @@ letnum = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8
 bkey = [{0:'· ',1:'O ',2:'X ',3:'· '},{0:'· ',1:'O ',2:'X ',3:'# '}]
 pswap = {1:0,0:1}
 key = [[],[]]
-#   KEY FOR BOARD # TO SYMBOL:
-#      ENEMY(0) FRIENDLY(1)
-#   ·: Unknown | Nothing
-#   O: Nothing | Enemy Miss
-#   X: Hit     | Hit Friendly
-#   #: N/A     | Unhit Friendly
-#   ---------------------------
-#   0: Blank Spot
-#   1: Miss Spot
-#   2: Hit Spot
-#   3: Unchecked Ship Spot
+key2 = {0:0,1:0,2:0,3:0,4:0}
+namekey = {0:'5',1:'4',2:'3',3:'3',4:'2'}
 def clear(): 
   for c in range(50): print()
 def bprint(player,bt):
@@ -62,7 +53,6 @@ def place(player,length):
     except:
       print('Invalid input')
   key[player].append(hold)
-
 print('Welcome to Battleship!')
 for a in range(2): name[a] = input('Name for player '+str(a+1)+'?\n')
 clear()
@@ -106,9 +96,31 @@ while game == True:
         board[pswap[p]][(y*10)+x] = 2
         bprint(p,1)
         bprint(pswap[p],0)
-        print('Hit!') #full ship destruction test-----------------------------------------------
-        input()
-        clear()
-        i = 1
+        print('Hit!')
+        for a in range(5):
+          if ((y*10)+x) in key[pswap[p]][a]:
+            key[pswap[p]][a][(y*10)+x] = 1
+            i = 0
+            for b in key[pswap[p]][a]:
+              if key[pswap[p]][a][b] == 0:
+                i = 1
+                break
+            if i == 0:
+              print(name[pswap[p]+'\'s '+namekey[a]+' ship was destroyed!'])
+              key2[a] = 1
+              i = 0
+              for c in key2:
+                if key2[c] == 0:
+                  i = 1
+                  break
+              if i == 0:
+                print(name[p]+' wins!')
+                game = False
+        if game == False:
+          pass
+        else:
+          input()
+          clear()
+          i = 1
     except:
       print('Invalid input')
