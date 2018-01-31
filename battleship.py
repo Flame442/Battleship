@@ -63,7 +63,6 @@ for x in range(2):
     print('Place your '+str(k)+' length ship')
     place(x,k)
     clear()
-print(key)
 game = True
 p = 1
 while game == True:
@@ -100,24 +99,24 @@ while game == True:
         for a in range(5):
           if ((y*10)+x) in key[pswap[p]][a]:
             key[pswap[p]][a][(y*10)+x] = 1
-            i = 0
+            l = 0
             for b in key[pswap[p]][a]:
               if key[pswap[p]][a][b] == 0:
-                i = 1
+                l = 1
                 break
-            if i == 0:
-              print(name[pswap[p]+'\'s '+namekey[a]+' ship was destroyed!'])
+            if l == 0:
+              print(name[pswap[p]]+'\'s '+namekey[a]+' length ship was destroyed!')
               key2[a] = 1
-              i = 0
+              l = 0
               for c in key2:
                 if key2[c] == 0:
-                  i = 1
+                  l = 1
                   break
-              if i == 0:
+              if l == 0:
                 print(name[p]+' wins!')
                 game = False
         if game == False:
-          pass
+          i = 1
         else:
           input()
           clear()
