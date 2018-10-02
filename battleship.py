@@ -9,6 +9,7 @@ key2 = {0:0,1:0,2:0,3:0,4:0}
 namekey = {0:'5',1:'4',2:'3',3:'3',4:'2'}
 def clear(): 
   for c in range(50): print()
+  print('------------------------------------------------------')
 def bprint(player,bt):
   b = '  '
   for z in range(10): b += let[z]+' '
@@ -48,10 +49,9 @@ def place(player,length):
           1 / 0
         for z in range(length):
           board[player][((y+z)*10)+x] = 3
-          hold[(y*10)+x+z] = 0
+          hold[((y+z)*10)+x] = 0
         i = 1
-    except:
-      print('Invalid input')
+    except: print('Invalid input')
   key[player].append(hold)
 print('Welcome to Battleship!')
 for a in range(2): name[a] = input('Name for player '+str(a+1)+'?\n')
@@ -121,5 +121,16 @@ while game == True:
           input()
           clear()
           i = 1
-    except:
-      print('Invalid input')
+    except: print('Invalid input')
+
+#   KEY FOR BOARD # TO SYMBOL:
+#      ENEMY(0) FRIENDLY(1)
+#   ·: Unknown | Nothing
+#   O: Nothing | Enemy Miss
+#   X: Hit     | Hit Friendly
+#   #: N/A     | Unhit Friendly
+#   ---------------------------
+#   0: Blank Spot
+#   1: Miss Spot
+#   2: Hit Spot
+#   3: Unchecked Ship Spot
